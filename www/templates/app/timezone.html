@@ -1,0 +1,38 @@
+<ion-modal-view>
+    <ion-header-bar class='bar-royal'>
+        <h1 class="title">{{timezone.id ? 'Edit' : 'Add'}} Timezone</h1>	
+        <button class='button button-clear' ng-click='modal.remove()'>Cancel</button>
+    </ion-header-bar>
+
+    <ion-content>
+        <form name='timezoneForm' ng-controller="TimezoneCtrl">
+            <div class="list list-inset">
+                <div class="item item-text-wrap">
+                    <h3>ENTER TIMEZONE INFORMATION</h3>
+                </div>
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" maxlength="255" ng-model='timezone.name' required=true>
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="City"  maxlength="50" ng-model='timezone.city' required=true>
+                </label>
+                <div class='item item-divider'>
+                    <h3>GMT DIFFERENCE: {{timezone.difference | tformat }}</h3>
+                </div>
+                <div class="item range range-positive">
+                    <i class="icon ion-minus"></i>
+                    <input type="range" ng-model="slider" min="-24" max="28" ng-change="timezone.difference = slider/2">
+                    <i class="icon ion-plus"></i>
+                </div>
+            </div>			
+
+            <div class='padding-left padding-right'>
+                <div class='item item-icon-left item-alert' ng-if='error'>
+                    <i class='icon ion-alert-circled'></i>
+                    {{error.message}}
+                </div>
+                <a class="button button-full button-calm save-timezone" ng-disabled="timezoneForm.$invalid" ng-click='save()'>Save</a>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

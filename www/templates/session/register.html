@@ -1,0 +1,40 @@
+<ion-view view-title="Register to Toptal Clock">
+	<ion-nav-buttons side="right">
+      <a class="button button-clear" href="#/session/login">
+        Login
+      </a>
+    </ion-nav-buttons>
+	<ion-content>
+		<div class="list list-inset">
+			<div class="item item-text-wrap">
+				Please confirm your country code and enter your phone number. You can use your email and password to login in future. 
+			</div>
+		</div>
+		<div class="list list-inset">
+			<form name='registerForm'>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">First Name</span>
+				    <input type="text" maxlength="30" ng-model='user.first_name' placeholder="First Name" required='true'>
+				</label>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">Last Name</span>
+				    <input type="text" maxlength="30" ng-model='user.last_name' placeholder="Last Name" required='true'>
+				</label>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">Email</span>
+				    <input type="email" maxlength="255" ng-model='user.email' placeholder="Email" required='true'>
+				</label>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">Password</span>
+				    <input type="password" maxlength="30" ng-model='user.password' placeholder="Password" required='true'>
+				</label>
+				<div class='item'>
+					<a ng-click='register()' class="button button-full button-calm" ng-disabled='registerForm.$invalid'>
+					  Register
+					</a>
+				</div>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>
+

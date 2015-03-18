@@ -1,0 +1,35 @@
+<ion-view view-title="Login to Toptal Clock">
+	<ion-nav-buttons side="right">
+      <a class="button button-clear" href="#/session/register">
+        Register
+      </a>
+    </ion-nav-buttons>
+	<ion-content>
+		<div class="list list-inset">
+			<div class="item item-text-wrap">
+				If you are already registered. Enter your email and password to get back to the awesomeness.
+			</div>
+		</div>
+		<div class="list list-inset">
+			<form name='loginForm'>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">Email</span>
+				    <input type="email" maxlength="255" ng-model='user.email' placeholder="Email" required='true'>
+				</label>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">Password</span>
+				    <input type="password" maxlength="30" ng-model='user.password' placeholder="Password" required='true'>
+				</label>
+				<div class='item'>
+					<a id="loginButton" ng-click='login()' class="button button-full button-calm" ng-disabled='loginForm.$invalid'>
+					  Login
+					</a>
+					<a ng-click='forgotPassword()' class="button button-full button-calm" ng-disabled="!user.email">
+					  Forgot Password?
+					</a>
+				</div>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>
+

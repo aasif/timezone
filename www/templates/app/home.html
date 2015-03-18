@@ -1,0 +1,79 @@
+<div class="bar bar-subheader item-input-inset">
+	<label class="item-input-wrapper">
+		<i class="icon ion-ios7-search placeholder-icon"></i>
+		<input type="search" placeholder="Search" ng-model='query'>
+	</label>
+	<button class="button button-clear" ng-click='query=""' ng-class="{hide: !query}">Clear</button>
+</div>
+<ion-view view-title="Toptal Clock">
+	<ion-nav-buttons side="left" >
+      <a class="button button-clear toggle-deleted" ng-click='toggleDeleted()' ng-show='list.length'>
+      	{{shouldShowDeleted ? 'Done' : 'Delete'}}
+      </a>
+    </ion-nav-buttons>
+	<ion-nav-buttons side="right">
+	  <a class="button button-clear toggle-edited" ng-click='toggleEdited()' ng-show='list.length'>
+        {{shouldShowEdited ? 'Done' : 'Edit'}}
+      </a>
+      <a class="button button-clear hide" ng-click='logout()'>
+        <i class='icon ion-log-out'></i>
+      </a>
+    </ion-nav-buttons>
+	<div class="tabs tabs-icon-left">
+		  <a class="tab-item add-timezone" ng-click='add()'>
+		    <i class="icon ion-plus"></i>
+		    Add New Timezone
+		  </a>
+		  <a class="tab-item add-timezone" ng-click='logout()'>
+		    <i class="icon ion-log-out"></i>
+		    Logout
+		  </a>
+	</div>
+
+	<ion-content class='has-subheader'>
+		<ion-list>
+			<ion-item 
+				class='timezone'
+				ng-controller='TimezoneCtrl' 
+				ng-repeat="timezone in list | orderBy:'created_at':true" 
+				ng-if="!timezone.deleted_at"
+				>
+				<div class='row row-center'>
+					<div class='col'>
+						<h2 class='timezone-name'>{{timezone.name}}</h2>
+						<span class='text-md'>{{timezone.city}}, GMT {{timezone.difference | tformat}}</span>
+					</div>
+					<div class='col text-right timezone-time'>
+						<current-time></current-time>
+					</div>
+				</div>
+
+			    <ion-delete-button 
+			    	class="ion-minus-circled delete-timezone" 
+			    	ng-click="delete(timezone)">
+			    </ion-delete-button>
+
+			    <ion-reorder-button 
+			    	class="ion-edit edit-timezone"
+					ng-click='edit(timezone)'
+			    	>
+			    </ion-reorder-button>
+			</ion-item>
+		</ion-list>
+	
+		<div class='list list-inset' ng-if="!list.length">
+			<div class='item item-icon-right'>
+				You don't have any timezones. Click on the plus sign to add
+				<i class='icon ion-plus-round' ng-click='add()'></i>
+			</div>
+		</div>
+		
+		<ion-infinite-scroll
+			ng-if="hasMoreData()"
+		    on-infinite="more()"
+		    distance="1%">
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>
+

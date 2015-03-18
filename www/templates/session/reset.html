@@ -1,0 +1,32 @@
+<ion-view view-title="Login to Toptal Clock">
+	<ion-nav-buttons side="right">
+      <a class="button button-clear" href="#/session/register">
+        Register
+      </a>
+    </ion-nav-buttons>
+	<ion-content>
+		<div class="list list-inset">
+			<div class="item item-text-wrap">
+				Enter the verification code you receive by email along with new password. 
+			</div>
+		</div>
+		<div class="list list-inset">
+			<form name='loginForm'>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">Verification Code</span>
+				    <input type="text" maxlength="255" ng-model='user.verification_code' placeholder="Verification Code" required='true'>
+				</label>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">New Password</span>
+				    <input type="password" maxlength="30" ng-model='user.password' placeholder="New Password" required='true'>
+				</label>
+				<div class='item'>
+					<a ng-click='reset()' class="button button-full button-calm" ng-disabled='loginForm.$invalid'>
+					  Login
+					</a>
+				</div>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>
+

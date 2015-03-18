@@ -1,0 +1,28 @@
+<ion-view view-title="Login to Toptal Clock">
+	<ion-nav-buttons side="right">
+      <a class="button button-clear" href="#/session/register">
+        Register
+      </a>
+    </ion-nav-buttons>
+	<ion-content>
+		<div class="list list-inset">
+			<div class="item item-text-wrap">
+				Enter your verification code below. You have recieved at {{$storage.user.email}}
+			</div>
+		</div>
+		<div class="list list-inset">
+			<form name='verifyForm'>
+				<label class="item item-input item-floating-label">
+				    <span class="input-label">Verification Code</span>
+				    <input type="text" ng-model='user.verification_code' placeholder="Verification Code" required='true'>
+				</label>
+				<div class='item'>
+					<a ng-click='verify()' class="button button-full button-calm" ng-disabled='verifyForm.$invalid'>
+					  Login
+					</a>
+				</div>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>
+
